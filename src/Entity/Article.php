@@ -26,6 +26,10 @@ class Article
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $lienImageArticle = null;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utilisateur $Utilisateur = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +79,18 @@ class Article
     public function setLienImageArticle(?string $lienImageArticle): static
     {
         $this->lienImageArticle = $lienImageArticle;
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->Utilisateur;
+    }
+
+    public function setUtilisateur(?Utilisateur $Utilisateur): static
+    {
+        $this->Utilisateur = $Utilisateur;
 
         return $this;
     }

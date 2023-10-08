@@ -19,6 +19,9 @@ class ImageClef
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $liens = null;
 
+    #[ORM\ManyToOne(inversedBy: 'imageClefs')]
+    private ?Clef $clef = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class ImageClef
     public function setLiens(?string $liens): static
     {
         $this->liens = $liens;
+
+        return $this;
+    }
+
+    public function getClef(): ?Clef
+    {
+        return $this->clef;
+    }
+
+    public function setClef(?Clef $clef): static
+    {
+        $this->clef = $clef;
 
         return $this;
     }

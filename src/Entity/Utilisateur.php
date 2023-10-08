@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UtilisateurRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -29,6 +31,18 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
+
+    #[ORM\OneToMany(mappedBy: 'Utilisateur', targetEntity: Article::class, orphanRemoval: true)]
+    private Collection $articles;
+
+    #[ORM\OneToMany(mappedBy: 'Utilisateur', targetEntity: Devis::class, orphanRemoval: true)]
+    private Collection $deviss;
+
+    public function __construct()
+    {
+        $this->articles = new ArrayCollection();
+        $this->deviss = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -108,6 +122,66 @@ class Utilisateur implements UserInterface, PasswordAuthenticatedUserInterface
     public function setEmail(string $email): static
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Article>
+     */
+    public function getArticles(): Collection
+    {
+        return $this->articles;
+    }
+
+    public function addArticle(Article $article): static
+    {
+        if (!$this->articles->contains($article)) {
+            $this->articles->add($article);
+            $article->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArticle(Article $article): static
+    {
+        if ($this->articles->removeElement($article)) {
+            // set the owning side to null (unless already changed)
+            if ($article->getUtilisateur() === $this) {
+                $article->setUtilisateur(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Devis>
+     */
+    public function getDeviss(): Collection
+    {
+        return $this->deviss;
+    }
+
+    public function addDeviss(Devis $deviss): static
+    {
+        if (!$this->deviss->contains($deviss)) {
+            $this->deviss->add($deviss);
+            $deviss->setUtilisateur($this);
+        }
+
+        return $this;
+    }
+
+    public function removeDeviss(Devis $deviss): static
+    {
+        if ($this->deviss->removeElement($deviss)) {
+            // set the owning side to null (unless already changed)
+            if ($deviss->getUtilisateur() === $this) {
+                $deviss->setUtilisateur(null);
+            }
+        }
 
         return $this;
     }

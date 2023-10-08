@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClefRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClefRepository::class)]
@@ -30,6 +32,17 @@ class Clef
 
     #[ORM\Column]
     private ?bool $esLivre = null;
+
+    #[ORM\OneToOne(mappedBy: 'clef', cascade: ['persist', 'remove'])]
+    private ?Devis $devis = null;
+
+    #[ORM\OneToMany(mappedBy: 'clef', targetEntity: ImageClef::class)]
+    private Collection $imageClefs;
+
+    public function __construct()
+    {
+        $this->imageClefs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +117,58 @@ class Clef
     public function setEsLivre(bool $esLivre): static
     {
         $this->esLivre = $esLivre;
+
+        return $this;
+    }
+
+    public function getDevis(): ?Devis
+    {
+        return $this->devis;
+    }
+
+    public function setDevis(?Devis $devis): static
+    {
+        // unset the owning side of the relation if necessary
+        if ($devis === null && $this->devis !== null) {
+            $this->devis->setClef(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($devis !== null && $devis->getClef() !== $this) {
+            $devis->setClef($this);
+        }
+
+        $this->devis = $devis;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, ImageClef>
+     */
+    public function getImageClefs(): Collection
+    {
+        return $this->imageClefs;
+    }
+
+    public function addImageClef(ImageClef $imageClef): static
+    {
+        if (!$this->imageClefs->contains($imageClef)) {
+            $this->imageClefs->add($imageClef);
+            $imageClef->setClef($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImageClef(ImageClef $imageClef): static
+    {
+        if ($this->imageClefs->removeElement($imageClef)) {
+            // set the owning side to null (unless already changed)
+            if ($imageClef->getClef() === $this) {
+                $imageClef->setClef(null);
+            }
+        }
 
         return $this;
     }

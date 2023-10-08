@@ -38,6 +38,29 @@ class Devis
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $detaillSuplementaire = null;
 
+    #[ORM\ManyToOne(inversedBy: 'deviss')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Utilisateur $Utilisateur = null;
+
+    #[ORM\ManyToOne(inversedBy: 'deviss')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Bois $bois = null;
+
+    #[ORM\ManyToOne(inversedBy: 'deviss')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Metal $metal = null;
+
+    #[ORM\ManyToOne(inversedBy: 'devis')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Forme $Forme = null;
+
+    #[ORM\ManyToOne(inversedBy: 'deviss')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Statut $Statut = null;
+
+    #[ORM\OneToOne(inversedBy: 'devis', cascade: ['persist', 'remove'])]
+    private ?Clef $clef = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -135,6 +158,78 @@ class Devis
     public function setDetaillSuplementaire(?string $detaillSuplementaire): static
     {
         $this->detaillSuplementaire = $detaillSuplementaire;
+
+        return $this;
+    }
+
+    public function getUtilisateur(): ?Utilisateur
+    {
+        return $this->Utilisateur;
+    }
+
+    public function setUtilisateur(?Utilisateur $Utilisateur): static
+    {
+        $this->Utilisateur = $Utilisateur;
+
+        return $this;
+    }
+
+    public function getBois(): ?Bois
+    {
+        return $this->bois;
+    }
+
+    public function setBois(?Bois $bois): static
+    {
+        $this->bois = $bois;
+
+        return $this;
+    }
+
+    public function getMetal(): ?Metal
+    {
+        return $this->metal;
+    }
+
+    public function setMetal(?Metal $metal): static
+    {
+        $this->metal = $metal;
+
+        return $this;
+    }
+
+    public function getForme(): ?Forme
+    {
+        return $this->Forme;
+    }
+
+    public function setForme(?Forme $Forme): static
+    {
+        $this->Forme = $Forme;
+
+        return $this;
+    }
+
+    public function getStatut(): ?Statut
+    {
+        return $this->Statut;
+    }
+
+    public function setStatut(?Statut $Statut): static
+    {
+        $this->Statut = $Statut;
+
+        return $this;
+    }
+
+    public function getClef(): ?Clef
+    {
+        return $this->clef;
+    }
+
+    public function setClef(?Clef $clef): static
+    {
+        $this->clef = $clef;
 
         return $this;
     }
