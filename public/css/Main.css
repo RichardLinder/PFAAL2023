@@ -1,0 +1,67 @@
+
+#contenaire{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10rem;
+    padding-bottom: 0;
+
+}
+header{
+display: flex;
+justify-content: space-evenly;
+}
+#topNav{
+    background-color: goldenrod;
+    border: .5mm;
+}
+section{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+#leftNav {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    padding: 0.5em;
+    width: fit-content;
+    position: fixed;
+    left: 1rem;
+}
+
+.carousellShop{
+    display: flex;
+
+}
+figure{
+    max-width: 10rem;
+}
+img{
+    max-width: 100%;
+}
+
+.liens{
+    color: white;
+    background-color: goldenrod;
+}
+.carouselApropos{
+    display: flex;
+
+}
+
+.articles{
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+.articles>article{
+    background-color: black;
+    margin: 1rem;
+
+}
+
+footer{
+    background-color: black;
+    color: white;
+}
