@@ -37,10 +37,57 @@ class TableauAdminController extends AbstractDashboardController
         return Dashboard::new()
             ->setTitle('PFAAL2023');
     }
-
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        // yield MenuItem::linkToCrud('The Label', 'fas fa-list', EntityClass::class);
+        yield MenuItem::section("Clef"); 
+        yield MenuItem::subMenu("Actions", "fas-bars")->setSubItems
+        (
+            [
+                // MenuItem::linkToCrud("Nouvel clef", "fas fa-plus", Keyp::class)->setAction(Crud::PAGE_NEW),
+                // MenuItem::linkToCrud("Voir  clef", "fas fa-eyes", Keyp::class)                
+
+            ]
+            );
+
+        yield MenuItem::section("Forme");
+        yield MenuItem::subMenu("Actions", "fas-bars")->setSubItems
+        (
+            [
+                // MenuItem::linkToCrud("Nouvel forme",  "fas fa-plus", Shape::class)->setAction(Crud::PAGE_NEW),
+                // MenuItem::linkToCrud("Voir  Forme", "fas fa-eyes", Shape::class)                
+
+            ]
+            );
+
+        yield MenuItem::section("Metal");
+        yield MenuItem::subMenu("Actions", "fas-bars")->setSubItems
+        (
+             [
+            //     MenuItem::linkToCrud("Nouvel metal",  "fas fa-plus", Metal::class)->setAction(Crud::PAGE_NEW),
+            //     MenuItem::linkToCrud("Voir  Metal", "fas fa-eyes", Metal::class)                
+    
+            ]
+            );
+        yield MenuItem::section("Bois");
+        yield MenuItem::subMenu("Actions", "fas-bars")->setSubItems
+        (
+            [
+                // MenuItem::linkToCrud("nouveau bois",  "fas fa-plus", Wood::class)->setAction(Crud::PAGE_NEW),
+                // MenuItem::linkToCrud("Voir  bois", "fas fa-eyes", Wood::class)                
+
+            ]
+        );
+        yield MenuItem::section("Articles"); 
+        yield MenuItem::subMenu("Actions", "fas-bars")->setSubItems
+        (
+            [
+                // MenuItem::linkToCrud("nouveau article", "fas fa-plus", Article::class)->setAction(Crud::PAGE_NEW),
+                // MenuItem::linkToCrud("Voir  article", "fas fa-eyes", Article::class)                
+
+            ]
+            );
+       
     }
-}
+
+}    
