@@ -27,11 +27,13 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    #[Route('/register', name: 'app_register')]
+    #[Route('/inscription', name: 'app_inscription')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AuthentificationAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
+        // crée les variable qui serviron a crée l'utilisateur a savoir un objet utilisateur et le formulaire qui remplit cette objet
         $user = new Utilisateur();
         $form = $this->createForm(RegistrationFormType::class, $user);
+        // recupéré dans la variable form les element du formulaire de inscription
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

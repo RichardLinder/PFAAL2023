@@ -28,20 +28,20 @@ class RegistrationFormType extends AbstractType
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
-                'invalid_message' => 'The password fields must match.',
-                'options' => ['attr' => ['class' => 'password-field']],
+                'invalid_message' => 'Les deux mot de passe doivent corespondre.',
+                'options' => ['attr' => ['class' => 'mot de ']],
                 'required' => true,
-                'first_options'  => ['label' => 'Password'],
-                'second_options' => ['label' => 'Repeat Password'],
+                'first_options'  => ['label' => 'mot de passe'],
+                'second_options' => ['label' => 'mot de passe'],
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'entrez un mot de passe s\'il vous play',
                     ]),
                     new Length([
                         'min' => 8,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Le mot de passe doit avoir au moins {{ limit }} caractère dont au moins 1 chifre 1 maj 1 min et un caractère spécial',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),
