@@ -34,7 +34,7 @@ class DevisController extends AbstractController
 
         return $this->render('Devis/index.html.twig',
         [
-            'DevisFormType' => $form->createView()
+            'formDevis' => $form->createView()
         ]);
     }
 }

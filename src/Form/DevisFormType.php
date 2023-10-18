@@ -29,7 +29,7 @@ class DevisFormType extends AbstractType
             ->add('metal',EntityType::class, [
                 // Ajout du choix du metal
                 'class' => Metal::class,'choice_label' => 'titre_metal'])
-            ->add('Forme',EntityType::class, [
+            ->add('forme',EntityType::class, [
                 // Ajout du choix du Form
                 'class' => Forme::class,'choice_label' => 'titre_forme'])
         ;

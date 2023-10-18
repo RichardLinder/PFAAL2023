@@ -73,3 +73,12 @@ footer{
 #formulaireInscription{
     border-style: solid;
 }
+
+.formulaireDevis
+{
+
+    display: flex;
+  flex-direction: column;
+  border-style: solid;
+
+}    
