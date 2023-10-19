@@ -103,4 +103,9 @@ class Forme
 
         return $this;
     }
+
+    public function __tostring() {
+        return $this->titreForme; 
+        
+    }
 }

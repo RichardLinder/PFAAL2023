@@ -24,6 +24,7 @@ class Statut
     public function __construct()
     {
         $this->deviss = new ArrayCollection();
+        $this->libelle = "Début de la procedure";
     }
 
     public function getId(): ?int

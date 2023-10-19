@@ -103,4 +103,9 @@ class Bois
 
         return $this;
     }
+
+    public function __tostring() {
+        return $this->titreBois; 
+        
+    }
 }

@@ -29,10 +29,11 @@
     </section>
     <section class="formulaireDevis">
         <h3>choix des option</h3>
-            {# {{ form_row(formDevis.bois.titre_bois) }}
-            {{ form_row(formDevis.metal.titre_metal ) }}
-            {{ form_row(formDevis.forme.titre_forme) }} #}
+             {{ form_row(formDevis.bois) }}
+            {{ form_row(formDevis.metal ) }}
+            {{ form_row(formDevis.forme) }} 
         <button type="submit" class="btn">Créez votre clef</button>
+        {{ form_end(formDevis) }}
     </section>
 </div>
 {% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}devis clef!{% endblock %}
+
+{% block body %}
+
+{% for devis in deviss %}
+
+<h2>
+    Devis pour {{devis.nom}} {{devis.prenom}}
+</h2>
+<ul>
+    <li>
+        {{devis.forme}}
+    </li>
+    <li>
+        {{devis.bois}}
+    </li>
+    <li>
+        {{devis.metal}}
+    </li>
+</ul>
+
+{% if  devis.esAccepter %}
+    Le devis es accepté.
+{% else %}
+accepter le devis ?
+<button type="submit" value="{{devis.id}}"  action="{{ render(controller(
+    'DevisController:validationDevis'
+)) }}" method="post" > clicker vite</button> {% endif %}
+<br>
+
+   
+{% endfor %}
+
+
+
+
+
+{% endblock %}

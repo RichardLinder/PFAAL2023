@@ -103,4 +103,9 @@ class Metal
 
         return $this;
     }
+
+    public function __tostring() {
+        return $this->titreMetal; 
+        
+    }
 }

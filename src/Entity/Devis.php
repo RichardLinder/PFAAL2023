@@ -55,7 +55,7 @@ class Devis
     private ?Forme $Forme = null;
 
     #[ORM\ManyToOne(inversedBy: 'deviss')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Statut $Statut = null;
 
     #[ORM\OneToOne(inversedBy: 'devis', cascade: ['persist', 'remove'])]
