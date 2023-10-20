@@ -25,9 +25,7 @@
     Le devis es accepté.
 {% else %}
 accepter le devis ?
-<button type="submit" value="{{devis.id}}"  action="{{ render(controller(
-    'DevisController:validationDevis'
-)) }}" method="post" > clicker vite</button> {% endif %}
+<button type="submit" value="{{devis.id}}"  method="post" > <a href="{{ path('accepterDevis', {'id': devis.id }) }}">clicker vite</a></button> {% endif %}
 <br>
 
    
