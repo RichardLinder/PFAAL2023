@@ -68,7 +68,7 @@ class DevisController extends AbstractController
             );
         }
 
-        clef =new Clef
+        // clef =new Clef
         $devis->setEsAccepter(true);
         $entityManager->flush();        
         return $this->redirectToRoute("app_accueil");
