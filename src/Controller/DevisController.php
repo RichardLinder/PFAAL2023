@@ -118,7 +118,7 @@ class DevisController extends AbstractController
                 'deviss' => $devis
             ]); 
         }else
-        return $this->render('/404.html.twig');
+        return $this->render('/accueil/404.html.twig');
 
 
    
