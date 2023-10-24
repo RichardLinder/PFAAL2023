@@ -21,7 +21,8 @@
     </li>
 </ul>
 
-{% if  devis.esAccepter %}
+
+{% if devis.statut.id > 1 and devis.statut.id < 3 %}
     Le devis es accepté.
 {% else %}
 accepter le devis ?

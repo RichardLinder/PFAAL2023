@@ -1,18 +1,42 @@
+a:link
+{
+color: goldenrod;
+}
+a:visited
+{
+    color: goldenrod;
+}
+.brun:valid
+{
+color: rgb(58, 34, 2);
+}
+
+.brun:visited
+{
+color: rgb(58, 34, 2);
+}
+.brun
+{
+color: rgb(58, 34, 2);
+}
+
+
 
 #contenaire{
     display: flex;
     flex-direction: column;
     text-align: center;
-    padding: 10rem;
-    padding-bottom: 0;
+
+
 
 }
 header{
+    color: goldenrod;
 display: flex;
 justify-content: space-evenly;
+background-color: rgb(58, 34, 2);
 }
 #topNav{
-    background-color: goldenrod;
     border: .5mm;
 }
 section{
@@ -30,8 +54,13 @@ section{
     left: 1rem;
 }
 
-.carousellShop{
-    display: flex;
+.carousellShop
+{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        color: white;
+        background-color: goldenrod;
 
 }
 figure{
@@ -47,14 +76,10 @@ img{
 }
 .carouselApropos{
     display: flex;
-
+    justify-content: space-evenly;
 }
 
-.articles{
-    display: flex;
-    flex-direction: row;
-    color: white;
-}
+
 .articles>article{
     background-color: black;
     margin: 1rem;

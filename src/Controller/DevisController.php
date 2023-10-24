@@ -18,29 +18,47 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class DevisController extends AbstractController
 {
     #[Route('/devis', name: 'devis')]
-    public function index(ManagerRegistry $doctrine,Request $request, EntityManagerInterface $Devis): Response
+    public function index(ManagerRegistry $doctrine,Request $request, EntityManagerInterface $entityManager): Response
     {
+                    // crée le statut du contrat avec l'id 1 donc devis a validé
+
+    $statut = $entityManager->getRepository(Statut::class)->find(1);
+
+        //remplir le devis
         $devis = new Devis;
+        // ajout de l'utilsateur en cour
         $devis->setUtilisateur($this->GetUser());
+        //gardé ???
         $devis->setEsAccepter(false);
-        $devis->setStatut(null);
+        // ajout du statut
+        $devis->setStatut($statut);
 
 
 
+// creation du form du devis
         $form = $this->createForm(DevisFormType::class,$devis );
         $form->handleRequest($request);
 
+        // algoritme : si le formulaire es soumis et qu'il es valide a lord dans ce cas faire l'opération entre les crochets
         if ($form->issubmitted()&& $form->isValid()) 
         {
 
+
+
+            // recupéré les donné
              $formDevis =$form->getData();
+
+             // utilisation de la fonction get mannager pour avoir la fonction d'insertion de donné de doctrine
              $entityDevis =$doctrine->getManager();
+             // prepare la requet
              $entityDevis->persist($formDevis);
+             // lance la requet dans le sql
              $entityDevis->flush();
 
-           return $this->redirectToRoute("accueil");
+             // renvoie a la page d'acuille a voir si on renvoie dans une autre page 
+           return $this->redirectToRoute("app_accueil");
         }
-
+// appelé la page devis
         return $this->render('Devis/index.html.twig',
         [
             'formDevis' => $form->createView()
@@ -68,8 +86,14 @@ class DevisController extends AbstractController
             );
         }
 
+        
+
+        $statut = $entityManager->getRepository(Statut::class)->find(2);
+
         // clef =new Clef
-        $devis->setEsAccepter(true);
+
+        // changer le statut a 2 devis validé mais non accepté
+        $devis->setStatut($statut);
         $entityManager->flush();        
         return $this->redirectToRoute("app_accueil");
     }

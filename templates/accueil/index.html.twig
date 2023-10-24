@@ -6,7 +6,7 @@
     <div id="contenaire">
         <header>
             <figure>
-                <img   id="logo" src="{{asset('image/logoOr.png')}}" alt="logo bmKeys">
+                <img   id="logo" src="{{ asset('images/logo.png') }}" alt="logo bmKeys">
             </figure>
 
             <nav id="topNav">
@@ -33,12 +33,8 @@
 
             <section id="shop">
                     
-                <article>
+                <article class="carousellShop">
                     {% if photos is defined and photos is not empty %}
-                        
-
-                            
-                        <div class="carousellShop">
 
                             {% for photo in photos %}
                             
@@ -46,16 +42,28 @@
                                 <img src="{{photo.liens}}" alt="{{photo.titre}} ">
                             </figure>
 
-                            {% endfor %}
-                        </div>
-                        
+                            {% endfor %}                        
                     
-                        <a class="liens" href="{{ path('devis')}}">choisir sa clef</a>
                         {% else %}
-                        <p>pas de photos disponible </p>
-                    {% endif %}
-                </article>
 
+                        <figure>
+                            <img src="{{ asset('images/Pas-dimage-disponible.jpg') }}" alt="Pas de Photographie disponible">
+                        </figure>
+                        <figure>
+                            <img src="{{ asset('images/Pas-dimage-disponible.jpg') }}" alt="Pas de Photographie disponible">
+                        </figure>
+                        <figure>
+                            <img src="{{ asset('images/Pas-dimage-disponible.jpg') }}" alt="Pas de Photographie disponible">
+                        </figure>
+
+                    {% endif %}
+                    
+                </article>
+                
+                <div class="liens">
+                    <a class="brun" href="{{ path('devis')}}">choisir sa clef</a>
+
+                </div>
                         
             </section>
 
