@@ -38,6 +38,7 @@ background-color: rgb(58, 34, 2);
 }
 #topNav{
     border: .5mm;
+    padding: 2em;
 }
 section{
     display: flex;
@@ -79,6 +80,13 @@ img{
     justify-content: space-evenly;
 }
 
+#actualite
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
 
 .articles>article{
     background-color: black;
@@ -89,11 +97,25 @@ img{
 footer{
     background-color: black;
     color: white;
+    display: flex;
+  justify-content: space-evenly;
 }
 
 
 
 /* /////////////////////////////////////////////////page special */
+
+.deviss
+{
+        display: flex;
+        flex-direction: column;    
+}
+
+.deviss->article
+{
+    display: flex;
+    justify-content: center;
+}
 
 #formulaireInscription{
     border-style: solid;

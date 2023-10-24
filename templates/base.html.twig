@@ -8,11 +8,54 @@
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
         {% block stylesheets %}
         {% endblock %}
+        <div id="contenaire">
+            <header>
+                <figure>
+                    <img   id="logo" src="{{ asset('images/logo.png') }}" alt="logo bmKeys">
+                </figure>
+    
+                <nav id="topNav">
+                    
+                    {% if not is_granted('ROLE_USER') %}
+                    <a href="{{path('app_inscription')}}">Inscription</a>
+                    
+                    {% endif %}
+                    
+                    {% if not is_granted('ROLE_USER') %}
+                    <a href="{{path('connexion')}}">Connexion</a>
+                    
+                    {% endif %}
+                    {% if  is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                    <a href="{{path('app_logout')}}">Deconnection</a>
+                    
+                    {% endif %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{path('admin')}}">Admin</a>
+                    <a href="{{path('devisAdmin')}}">Devis Admin</a>
+                    {% endif %}
+                    
+                    <a href="{{path('app_accueil')}}">Accuille</a>
+                    {% if not is_granted('ROLE_USER') %}
+                    <a href="{{path('vosClef')}}">vosClées</a>
+                    {% endif %}
+                </nav>
+            </header>
+
+
+            
+            
+        </div>
 
         {% block javascripts %}
         {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
+        
+        <footer>
+            <h2>contact</h2>
+            <h2>info légal</h2>
+            <h2>autre</h2>
+        </footer>
     </body>
 </html>

@@ -3,18 +3,7 @@
 {% block title %}Page d'accuille{% endblock %}
 
 {% block body %}
-    <div id="contenaire">
-        <header>
-            <figure>
-                <img   id="logo" src="{{ asset('images/logo.png') }}" alt="logo bmKeys">
-            </figure>
 
-            <nav id="topNav">
-                <a href="">Magassin</a>
-                <a href="">à Propos</a>
-                <a href="">Actualité</a>
-            </nav>
-        </header>
 
         {% if networks  is defined%}
             
@@ -60,10 +49,13 @@
                     
                 </article>
                 
+                {% if is_granted('ROLE_USER') %}
                 <div class="liens">
                     <a class="brun" href="{{ path('devis')}}">choisir sa clef</a>
 
                 </div>
+                    
+                {% endif %}
                         
             </section>
 
@@ -103,7 +95,15 @@
                                 
                         </div>
                         {% else %}
-                        <p>Pas d'article disponible</p>
+                        <figure class="articles">
+                            <img src="{{ asset('images/Placeholder-600x600.png') }}" alt="placeholder article">
+                        </figure> 
+                        <figure class="articles">
+                            <img src="{{ asset('images/Placeholder-600x600.png') }}" alt="placeholder article">
+                        </figure>
+                        <figure class="articles">
+                            <img src="{{ asset('images/Placeholder-600x600.png') }}" alt="placeholder article">
+                        </figure>
                 {% endif %}
                     {% if article is defined %}
                     <a class="liens" href=" {{ path('article')}} " >Voir plus d'article</a>
@@ -153,12 +153,7 @@
 
 
             </section> #}
-            <footer>
-                <h2>contact</h2>
-                <h2>info légal</h2>
-                <h2>autre</h2>
-
-            </footer>
+      
     </div>
 
 {% endblock %}

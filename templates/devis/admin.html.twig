@@ -3,34 +3,38 @@
 {% block title %}devis clef!{% endblock %}
 
 {% block body %}
+<div class="deviss" >
 
-{% for devis in deviss %}
-
-<h2>
-    Devis pour {{devis.nom}} {{devis.prenom}}
-</h2>
-<ul>
-    <li>
-        {{devis.forme}}
-    </li>
-    <li>
-        {{devis.bois}}
-    </li>
-    <li>
-        {{devis.metal}}
-    </li>
-</ul>
-
-
-{% if devis.statut.id > 1 and devis.statut.id < 3 %}
-    Le devis es accepté.
-{% else %}
-accepter le devis ?
-<button type="submit" value="{{devis.id}}"  method="post" > <a href="{{ path('accepterDevis', {'id': devis.id }) }}">clicker vite</a></button> {% endif %}
-<br>
-
-   
-{% endfor %}
+    {% for devis in deviss %}
+    <article>
+    
+        <h2>
+            Devis pour {{devis.nom}} {{devis.prenom}}
+        </h2>
+        <ul>
+            <li>
+                {{devis.forme}}
+            </li>
+            <li>
+                {{devis.bois}}
+            </li>
+            <li>
+                {{devis.metal}}
+            </li>
+        </ul>
+        
+        
+        {% if devis.statut.id > 1 and devis.statut.id < 3 %}
+            Le devis es accepté.
+        {% else %}
+        accepter le devis ?
+        <button type="submit" value="{{devis.id}}"  method="post" > <a href="{{ path('accepterDevis', {'id': devis.id }) }}">clicker vite</a></button> {% endif %}
+        <br>
+        
+           
+    </article>
+    {% endfor %}
+</div>
 
 
 

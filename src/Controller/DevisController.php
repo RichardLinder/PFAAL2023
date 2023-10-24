@@ -10,6 +10,7 @@ use App\Repository\DevisRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class DevisController extends AbstractController
 {
+
     #[Route('/devis', name: 'devis')]
     public function index(ManagerRegistry $doctrine,Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -96,5 +98,25 @@ class DevisController extends AbstractController
         $devis->setStatut($statut);
         $entityManager->flush();        
         return $this->redirectToRoute("app_accueil");
+    }
+    #[Route('vosClees', name: 'vosClef')]
+    public function vosClef(DevisRepository $devisRepository): Response
+
+    
+    {
+        // recuperation de l'id de l'utilisateur en cour en 1er en recupérant l'utilisateur en cour
+        $user = $this->getUser();
+
+// test if pour verifié que l'utilisateur es bien instancié
+        if(!empty($user)){
+        $userId = $user->getId();
+        }
+
+
+        $devis =  $devisRepository->findBy([], ["id" => "ASC"]);
+        return $this->render('/devis/utilisateur.html.twig',
+        [
+            'clef' => $clef
+        ]); 
     }
 }
