@@ -3,8 +3,52 @@
 {% block title %}Vos Clef{% endblock %}
 
 {% block body %}
+
+<h2>Liste de vos clef</h2>
+
 {% for devis in deviss %}
-{{devis.id}}
+
+<div class="Col">
+    <h3>Devis pour  {{devis.nom}}  {{devis.prenom}}</h3>
+    <p>
+        <h4>
+            Numéros de serie de la serure
+        </h4>
+        <p>
+            {{devis.NumerosDeSerieSerrure}}
+        </p>
+        <h4>
+            Type de serrure 
+        </h4>
+        <p>
+            {{devis.typeSerrure}}
+        </p>
+        <h4>
+            Description de la serrure 
+        </h4>
+        <p>
+            {{devis.descriptionSerrure}}
+        </p>
+    </p>
+   
+    {{devis.statut.libelle}}
+</div>
+<h4>
+    Action a Faire:
+</h4>
+{% if devis.statut.id > 1 and devis.statut.id < 3 %}
+    <p>
+        validé le devis ?         
+    </p>
+    <a href="{{ path('acepterDevis', {'id': devis.id }) }}">oui</a>
+    <br>
+    <a href="{{ path('refuserDevis', {'id': devis.id }) }}">non</a>
+    {% else %}
+    <p>
+        Pas d'action a faire pour le moment
+    </p>
+{% endif %}
+
     
 {% endfor %}
 

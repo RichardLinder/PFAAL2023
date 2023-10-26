@@ -26,4 +26,14 @@ class AccueilController extends AbstractController
         ]);
     }
 
+
+    #[Route('/404', name: 'app_quatreCentQuatre')]
+
+    public function quatreCentQuatre() 
+    {
+        return $this->render('/accueil/404.html.twig');
+    }
+
+
+
 }

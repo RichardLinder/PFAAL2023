@@ -24,7 +24,7 @@ class DevisController extends AbstractController
     {
                     // crée le statut du contrat avec l'id 1 donc devis a validé
 
-    $statut = $entityManager->getRepository(Statut::class)->find(1);
+        $statut = $entityManager->getRepository(Statut::class)->find(1);
 
         //remplir le devis
         $devis = new Devis;
@@ -37,7 +37,7 @@ class DevisController extends AbstractController
 
 
 
-// creation du form du devis
+        // creation du form du devis
         $form = $this->createForm(DevisFormType::class,$devis );
         $form->handleRequest($request);
 
@@ -60,12 +60,14 @@ class DevisController extends AbstractController
              // renvoie a la page d'acuille a voir si on renvoie dans une autre page 
            return $this->redirectToRoute("app_accueil");
         }
-// appelé la page devis
+        // appelé la page devis
         return $this->render('Devis/index.html.twig',
         [
             'formDevis' => $form->createView()
         ]);
     }
+
+    // creation de la function de control des devis partie administration
     #[Route('/devis/admin', name: 'devisAdmin')]
     public function devisAdmin(DevisRepository $devisRepository): Response
     {
@@ -76,7 +78,9 @@ class DevisController extends AbstractController
             'deviss' => $devis
         ]);
     }
-    #[Route('/devis/admin/accepterDevis{id}', name: 'accepterDevis')]
+
+    // function qui permet a l'admin de validé le devis 
+    #[Route('/devis/admin/validerDevis{id}', name: 'validerDevis')]
     public function validationDevis(EntityManagerInterface $entityManager ,int $id) : Response
     {
 
@@ -86,9 +90,7 @@ class DevisController extends AbstractController
             throw $this->createNotFoundException(
                 'Devis non trouvé '.$id
             );
-        }
-
-        
+        }      
 
         $statut = $entityManager->getRepository(Statut::class)->find(2);
 
@@ -99,6 +101,9 @@ class DevisController extends AbstractController
         $entityManager->flush();        
         return $this->redirectToRoute("app_accueil");
     }
+
+
+    // control des devis coté utilisateur 
     #[Route('vosClees', name: 'vosClef')]
     public function vosClef(DevisRepository $devisRepository): Response
 
@@ -107,7 +112,7 @@ class DevisController extends AbstractController
         // recuperation de l'id de l'utilisateur en cour en 1er en recupérant l'utilisateur en cour
         $user = $this->getUser();
 
-// test if pour verifié que l'utilisateur es bien instancié
+        // test if pour verifié que l'utilisateur es bien instancié
         if(!empty($user)){
 
 
@@ -123,4 +128,104 @@ class DevisController extends AbstractController
 
    
     }
+
+    #[Route('/devis/utilisateur/accepterDevis{id}', name: 'acepterDevis')]
+
+    public function acepterDevis(ManagerRegistry $doctrine ,EntityManagerInterface $entityManager ,int $id) : Response
+    {
+        // recupération du statut 3
+        $statut = $entityManager->getRepository(Statut::class)->find(3);
+        //recupération de l'user
+        $user = $this->getUser();
+        
+
+        $devis = $entityManager->getRepository(Devis::class)->find($id);
+          // verifie que l'on a trouvé le devis
+          if (!$devis) {
+            throw $this->createNotFoundException(
+                'Devis non trouvé '.$id
+            );
+        } 
+        // verifie que le devis demandé es bien celui de l'utilisateur 
+        if ($devis->getUtilisateur()->getId()== $user->getId()) 
+        {
+            // verifie que le statue es bien celui de a  validé
+            if ($devis->getStatut()->getID()==2) 
+            {
+                // change le statut a accepter
+                $devis->setStatut($statut);            
+
+                // creation de la clef associè au devis
+                $clef = new Clef
+                ( 
+                    $devis->getNumerosDeSerieSerrure(),
+                    $devis->getMetal()->getTitreMetal(),
+                    $devis->getForme()->getTitreForme(),
+                    $devis->getBois()->getTitreBois()
+                );
+                    
+                    
+                    $entityDevis =$doctrine->getManager();
+                    // prepare la requet
+                    $entityDevis->persist($clef);
+                    // ajout de la clef en    
+                    $devis->setClef($clef);
+                    // lance les requet dans le sql
+                    $entityDevis->flush();       
+                    $entityManager->flush();
+                return $this->redirectToRoute('vosClef');           
+            }
+        }else 
+        {
+            return $this->redirectToRoute('app_quatreCentQuatre');
+            
+        }
+      
+
+    }
+    
+
+    #[Route('/devis/utilisateur/refuserDevis{id}', name: 'refuserDevis')]
+
+    public function refuserDevis(EntityManagerInterface $entityManager ,int $id) : Response
+    
+    
+    {
+               // recupération du statut 4
+               $statut = $entityManager->getRepository(Statut::class)->find(4);
+        
+        $devis = $entityManager->getRepository(Devis::class)->find($id);
+        // recupération de l'user actuel
+        $user = $this->getUser();
+
+
+        // verifie que l'on a trouvé le devis
+        if (!$devis) {
+            throw $this->createNotFoundException(
+                'Devis non trouvé '.$id
+            );
+        } 
+        // verifie que le devis demandé es bien celui de l'utilisateur 
+        if ($devis->getUtilisateur()->getId()== $user->getId()) 
+        {
+
+
+            // verifie que le statue es bien celui de a  validé
+            if ($devis->getStatut()->getID()==2) 
+            {
+                // change le statut a refusé
+                $devis->setStatut($statut);
+                $entityManager->flush();
+                return $this->redirectToRoute('vosClef');                  
+            }
+        }else 
+        {
+            return $this->redirectToRoute('app_quatreCentQuatre');
+            
+        }
+        return $this->redirectToRoute('vosClef');
+
+
+    }
+
 }

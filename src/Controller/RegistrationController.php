@@ -36,7 +36,8 @@ class RegistrationController extends AbstractController
         // recupéré dans la variable form les element du formulaire de inscription
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) 
+        {
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -44,6 +45,8 @@ class RegistrationController extends AbstractController
                     $form->get('plainPassword')->getData()
                 )
             );
+            // ajout du role user 
+            $user->setRoles(['ROLE_USER']);
 
             $entityManager->persist($user);
             $entityManager->flush();

@@ -28,10 +28,10 @@ class Clef
     private ?string $bois = null;
 
     #[ORM\Column]
-    private ?bool $esProduit = null;
+    private ?bool $esProduit = false;
 
     #[ORM\Column]
-    private ?bool $esLivre = null;
+    private ?bool $esLivre = false;
 
     #[ORM\OneToOne(mappedBy: 'clef', cascade: ['persist', 'remove'])]
     private ?Devis $devis = null;
@@ -39,9 +39,18 @@ class Clef
     #[ORM\OneToMany(mappedBy: 'clef', targetEntity: ImageClef::class)]
     private Collection $imageClefs;
 
-    public function __construct()
+    public function __construct($numeroDeSerie, $metal, $forme,$bois )
     {
         $this->imageClefs = new ArrayCollection();
+
+        $this->numeroDeSerie = $numeroDeSerie;
+
+        $this->forme = $forme;
+
+        $this->metal = $metal;
+
+        $this->bois = $bois;
+
     }
 
     public function getId(): ?int
