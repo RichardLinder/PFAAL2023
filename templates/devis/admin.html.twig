@@ -1,13 +1,102 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}devis clef!{% endblock %}
-
 {% block body %}
-<div class="deviss" >
-
-    {% for devis in deviss %}
-    <article>
+<h1>Liste des devis</h1>
+<div class="devis">
     
+    
+    <div class="devisAValides flexUn" >
+
+        <h2>devis a validé</h2>
+
+        {% for devis in devisAValides %}
+        <article>    
+            <h2>
+                Devis pour {{devis.nom}} {{devis.prenom}}
+            </h2>
+            <ul>
+                <li>
+                    {{devis.forme}}
+                </li>
+                <li>
+                    {{devis.bois}}
+                </li>
+                <li>
+                    {{devis.metal}}
+                </li>
+            </ul>
+            accepter le devis ?
+            <button type="submit" value="{{devis.id}}"  method="post" > <a href="{{ path('validerDevis', {'id': devis.id }) }}">clicker vite</a></button> 
+            
+            
+        </article>
+        {% endfor %}
+    </div>
+
+
+
+
+
+    <div class="devisValides flexUn" >
+
+        <h2> Devis validé</h2>
+
+        {% for devis in devisValides %}
+        <article>    
+            <h2>
+                Devis pour {{devis.nom}} {{devis.prenom}}
+            </h2>
+            <ul>
+                <li>
+                    {{devis.forme}}
+                </li>
+                <li>
+                    {{devis.bois}}
+                </li>
+                <li>
+                    {{devis.metal}}
+                </li>
+            </ul>
+            <p>devis Validé par le gestionaire</p>
+            
+            
+        </article>
+        {% endfor %}
+    </div>
+
+    <div class="devisAccepters flexUn" >
+        <h2>devis accepté </h2>
+
+        {% for devis in devisAccepters %}
+        <article>    
+            <h2>
+                Devis pour {{devis.nom}} {{devis.prenom}}
+            </h2>
+            <ul>
+                <li>
+                    {{devis.forme}}
+                </li>
+                <li>
+                    {{devis.bois}}
+                </li>
+                <li>
+                    {{devis.metal}}
+                </li>
+            </ul>
+            <p>devis accepté par le client</p>
+            <button type="submit" value="{{devis.id}}"  method="post" > <a href="{{ path('clefFinis', {'id': devis.id }) }}">clicker vite</a></button>            
+            
+        </article>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="devisAccepters flexUn" >
+    <h2>devis refuses </h2>
+
+    {% for devis in devisRefuses %}
+    <article>    
         <h2>
             Devis pour {{devis.nom}} {{devis.prenom}}
         </h2>
@@ -22,22 +111,40 @@
                 {{devis.metal}}
             </li>
         </ul>
+        <p>devis refusé par le client</p>
         
         
-        {% if devis.statut.id > 1 and devis.statut.id < 3 %}
-            Le devis es accepté.
-        {% else %}
-        accepter le devis ?
-        <button type="submit" value="{{devis.id}}"  method="post" > <a href="{{ path('validerDevis', {'id': devis.id }) }}">clicker vite</a></button> {% endif %}
-        <br>
-        
-           
     </article>
     {% endfor %}
 </div>
 
 
+<div class="clefFinis flexUn" >
+    <h2>clef finis </h2>
 
+    {% for devis in clefFinis %}
+    <article>    
+        <h2>
+            Devis pour {{devis.nom}} {{devis.prenom}}
+        </h2>
+        <ul>
+            <li>
+                {{devis.forme}}
+            </li>
+            <li>
+                {{devis.bois}}
+            </li>
+            <li>
+                {{devis.metal}}
+            </li>
+        </ul>
+        <p>devis refusé par le client</p>
+        
+        
+    </article>
+    {% endfor %}
+</div>
 
+</div>
 
 {% endblock %}

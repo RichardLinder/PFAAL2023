@@ -4,53 +4,74 @@
 
 {% block body %}
 
-<h2>Liste de vos clef</h2>
+<h1>Liste de vos clef</h1>
 
-{% for devis in deviss %}
 
-<div class="Col">
-    <h3>Devis pour  {{devis.nom}}  {{devis.prenom}}</h3>
-    <p>
-        <h4>
-            Numéros de serie de la serure
-        </h4>
-        <p>
-            {{devis.NumerosDeSerieSerrure}}
-        </p>
-        <h4>
-            Type de serrure 
-        </h4>
-        <p>
-            {{devis.typeSerrure}}
-        </p>
-        <h4>
-            Description de la serrure 
-        </h4>
-        <p>
-            {{devis.descriptionSerrure}}
-        </p>
-    </p>
-   
-    {{devis.statut.libelle}}
-</div>
-<h4>
-    Action a Faire:
-</h4>
-{% if devis.statut.id > 1 and devis.statut.id < 3 %}
-    <p>
-        validé le devis ?         
-    </p>
-    <a href="{{ path('acepterDevis', {'id': devis.id }) }}">oui</a>
-    <br>
-    <a href="{{ path('refuserDevis', {'id': devis.id }) }}">non</a>
-    {% else %}
-    <p>
-        Pas d'action a faire pour le moment
-    </p>
-{% endif %}
+<div class="devis">
 
+    <div class="devisAValides flexUn" >
+
+        <h2>devis a validé</h2>
+
+
+
+        {% for devis in devisAValides %}
+        <article>    
+            <h2>
+                Devis pour {{devis.nom}} {{devis.prenom}}
+            </h2>
+            <ul>
+                <li>
+                    {{devis.forme}}
+                </li>
+                <li>
+                    {{devis.bois}}
+                </li>
+                <li>
+                    {{devis.metal}}
+                </li>
+            </ul>
+
+            <p>L'artisant a pris en compte votre devis une proposition comercial vous sera donné au plus tôt</p>
+
+                
+        </article>
+
+    </div>
     
-{% endfor %}
+    
+    <div class="devisValides flexUn" >
+
+        <h2>devis à confirmé</h2>
+
+        {% for devis in devisValides %}
+        <article>    
+            <h2>
+                Devis pour {{devis.nom}} {{devis.prenom}}
+            </h2>
+            <ul>
+                <li>
+                    {{devis.forme}}
+                </li>
+                <li>
+                    {{devis.bois}}
+                </li>
+                <li>
+                    {{devis.metal}}
+                </li>
+            </ul>
+            <p> accepter le devis ?</p>
+           
+    
+        <a href="{{ path('acepterDevis', {'id': devis.id }) }}">oui</a>
+        <br>
+        <a href="{{ path('refuserDevis', {'id': devis.id }) }}">non</a>
+                
+        </article>
+
+    </div>
+
+
 
 
 

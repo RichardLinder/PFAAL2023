@@ -71,11 +71,35 @@ class DevisController extends AbstractController
     #[Route('/devis/admin', name: 'devisAdmin')]
     public function devisAdmin(DevisRepository $devisRepository): Response
     {
-        $devis =  $devisRepository->findBy([], ["id" => "ASC"]);
 
+        $devisAValide = $devisRepository->findBy(
+            ['Statut' => '1'],
+            ['id' => 'ASC']
+        );
+
+        $devisValide = $devisRepository->findBy(
+            ['Statut' => '2'],
+            ['id' => 'ASC']
+        );
+        $devisAccepter = $devisRepository->findBy(
+            ['Statut' => '3'],
+            ['id' => 'ASC']
+        );
+        $devisRefuse = $devisRepository->findBy(
+            ['Statut' => '4'],
+            ['id' => 'ASC']
+        );
+        $clefFinis = $devisRepository->findBy(
+            ['Statut' => '5'],
+            ['id' => 'ASC']
+        );
         return $this->render('devis/admin.html.twig',
         [
-            'deviss' => $devis
+            'devisAValides' => $devisAValide,
+            'devisValides' => $devisValide,
+            'devisAccepters' => $devisAccepter,
+            'devisRefuses' => $devisRefuse,
+            'clefFinis' => $clefFinis
         ]);
     }
 
@@ -102,6 +126,8 @@ class DevisController extends AbstractController
         return $this->redirectToRoute("app_accueil");
     }
 
+    
+
 
     // control des devis coté utilisateur 
     #[Route('vosClees', name: 'vosClef')]
@@ -116,7 +142,50 @@ class DevisController extends AbstractController
         if(!empty($user)){
 
 
-            $devis =  $devisRepository->findBy(['Utilisateur' => $user->getId()]);
+            $devisAValide = $devisRepository->findBy(
+                ['Utilisateur' => $user->getId()],
+                ['Statut' => '1'],
+                ['id' => 'ASC']
+            );
+    
+            $devisValide = $devisRepository->findBy(
+                ['Utilisateur' => $user->getId()],
+                ['Statut' => '2'],
+                ['id' => 'ASC']
+            );
+            $devisAccepter = $devisRepository->findBy(
+                ['Utilisateur' => $user->getId()],
+                ['Statut' => '3'],
+                ['id' => 'ASC']
+            );
+            $devisRefuse = $devisRepository->findBy(
+                ['Utilisateur' => $user->getId()],
+                ['Statut' => '4'],
+                ['id' => 'ASC']
+            );
+            $clefFinis = $devisRepository->findBy(
+                ['Utilisateur' => $user->getId()],
+                ['Statut' => '5'],
+                ['id' => 'ASC']
+            );
+            return $this->render('/devis/utilisateur.html.twig',            [
+                'devisAValides' => $devisAValide,
+                'devisValides' => $devisValide,
+                'devisAccepters' => $devisAccepter,
+                'devisRefuses' => $devisRefuse,
+                'clefFinis' => $clefFinis
+            ]);
+
+
+
+
+
+
+
+
+
+
+            $devis =  $devisRepository->findBy();
             
             return $this->render('/devis/utilisateur.html.twig',
             [
@@ -226,6 +295,27 @@ class DevisController extends AbstractController
         return $this->redirectToRoute('vosClef');
 
 
+    }
+
+
+    // function qui permet a l'admin indiqué la finnition de la clef 
+    #[Route('/devis/admin/clefFinis{id}', name: 'clefFinis')]
+    public function clefFinis(EntityManagerInterface $entityManager ,int $id) : Response
+    {
+
+        $devis = $entityManager->getRepository(Devis::class)->find($id);
+
+        if (!$devis) {
+            throw $this->createNotFoundException(
+                'Devis non trouvé '.$id
+            );
+        }      
+
+        $statut = $entityManager->getRepository(Statut::class)->find(5);
+        // changer le statut a clef finis
+        $devis->setStatut($statut);
+        $entityManager->flush();        
+        return $this->redirectToRoute("app_accueil");
     }
 
 }

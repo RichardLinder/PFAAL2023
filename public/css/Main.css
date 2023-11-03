@@ -105,6 +105,16 @@ footer{
 
 /* /////////////////////////////////////////////////page special */
 
+.devis
+{
+    display: flex;
+    flex-direction: inherit;
+    
+}
+.flexUn 
+{
+    flex: 1;
+}
 .deviss
 {
         display: flex;
