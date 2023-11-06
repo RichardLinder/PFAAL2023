@@ -142,32 +142,100 @@ class DevisController extends AbstractController
         if(!empty($user)){
 
 
-            $devisAValide = $devisRepository->findBy(
-                ['Utilisateur' => $user->getId()],
-                ['Statut' => '1'],
-                ['id' => 'ASC']
-            );
+            $devisAValide 
+            = $devisRepository->createQueryBuilder("select")
+            ->select("d")
+            ->from("Devis")            
+            ->where('Utilisateur = :utilisateur')
+            ->andWhere('Statut = :statut')
+            ->setParameters(new ArrayCollection([
+                new Parameter('utilisateur', $user->getId()),
+                new Parameter('statut', 1)]))
+            ->add('orderBy',id)
+            ->getQuery()
+            ->getResult();
+
+            dd($devisAValide);
+            
+
+            // $devisAValide = $devisRepository->findBy(
+            //     ['Utilisateur' => $user->getId()],
+            //     ['Statut' => '1'],
+            //     ['id' => 'ASC']
+            // );
     
-            $devisValide = $devisRepository->findBy(
-                ['Utilisateur' => $user->getId()],
-                ['Statut' => '2'],
-                ['id' => 'ASC']
-            );
-            $devisAccepter = $devisRepository->findBy(
-                ['Utilisateur' => $user->getId()],
-                ['Statut' => '3'],
-                ['id' => 'ASC']
-            );
-            $devisRefuse = $devisRepository->findBy(
-                ['Utilisateur' => $user->getId()],
-                ['Statut' => '4'],
-                ['id' => 'ASC']
-            );
-            $clefFinis = $devisRepository->findBy(
-                ['Utilisateur' => $user->getId()],
-                ['Statut' => '5'],
-                ['id' => 'ASC']
-            );
+
+            // $devisValide = $devisRepository->createQueryBuilder()
+            // ->andWhere('Utilisateur = :utilisateur')
+            // ->andWhere('Statut = :statut')
+            // ->setParameters(new ArrayCollection([
+            //     new Parameter('utilisateur', $user->getId()),
+            //     new Parameter('statut', 2)
+            // ]))
+            // ->add('orderBy',id)
+            // ->getQuery()
+            // ->getResult();
+            // $devisValide = $devisRepository->findBy(
+            //     ['Utilisateur' => $user->getId()],
+            //     ['Statut' => '2'],
+            //     ['id' => 'ASC']
+            // );
+
+
+            // $devisAccepter = $devisRepository->createQueryBuilder()
+            // ->andWhere('Utilisateur = :utilisateur')
+            // ->andWhere('Statut = :statut')
+            // ->setParameters(new ArrayCollection([
+            //     new Parameter('utilisateur', $user->getId()),
+            //     new Parameter('statut', 3)
+            // ]))
+            // ->add('orderBy',id)
+            // ->getQuery()
+            // ->getResult();
+
+
+
+            // $devisAccepter = $devisRepository->findBy(
+            //     ['Utilisateur' => $user->getId()],
+            //     ['Statut' => '3'],
+            //     ['id' => 'ASC']
+            // );
+
+
+
+            // $devisRefuse = $devisRepository->createQueryBuilder()
+            // ->andWhere('Utilisateur = :utilisateur')
+            // ->andWhere('Statut = :statut')
+            // ->setParameters(new ArrayCollection([
+            //     new Parameter('utilisateur', $user->getId()),
+            //     new Parameter('statut', 4)
+            // ]))
+            // ->add('orderBy',id)
+            // ->getQuery()
+            // ->getResult();
+            
+            // $devisRefuse = $devisRepository->findBy(
+            //     ['Utilisateur' => $user->getId()],
+            //     ['Statut' => '4'],
+            //     ['id' => 'ASC']
+            // );
+
+            // $devisclefFinisRefuse = $devisRepository->createQueryBuilder()
+            // ->andWhere('Utilisateur = :utilisateur')
+            // ->andWhere('Statut = :statut')
+            // ->setParameters(new ArrayCollection([
+            //     new Parameter('utilisateur', $user->getId()),
+            //     new Parameter('statut', 5)
+            // ]))
+            // ->add('orderBy',id)
+            // ->getQuery()
+            // ->getResult();
+            
+            // $clefFinis = $devisRepository->findBy(
+            //     ['Utilisateur' => $user->getId()],
+            //     ['Statut' => '5'],
+            //     ['id' => 'ASC']
+            // );
             return $this->render('/devis/utilisateur.html.twig',            [
                 'devisAValides' => $devisAValide,
                 'devisValides' => $devisValide,
@@ -175,21 +243,11 @@ class DevisController extends AbstractController
                 'devisRefuses' => $devisRefuse,
                 'clefFinis' => $clefFinis
             ]);
-
-
-
-
-
-
-
-
-
-
-            $devis =  $devisRepository->findBy();
+            // $devis =  $devisRepository->findBy();
             
             return $this->render('/devis/utilisateur.html.twig',
             [
-                'deviss' => $devis
+                // 'deviss' => $devis
             ]); 
         }else
         return $this->render('/accueil/404.html.twig');

@@ -105,16 +105,32 @@ footer{
 
 /* /////////////////////////////////////////////////page special */
 
+/* devis client */
 .devis
 {
-    display: flex;
-    flex-direction: inherit;
+    /* display: flex; */
     
+}
+.formulaireDevis
+{
+
+    display: flex;
+  flex-direction: column;
+  border-style: solid;
+
+}    
+
+
+.cacheDevis {
+    display: none;
 }
 .flexUn 
 {
     flex: 1;
 }
+
+
+/* page vos clef */
 .deviss
 {
         display: flex;
@@ -131,11 +147,3 @@ footer{
     border-style: solid;
 }
 
-.formulaireDevis
-{
-
-    display: flex;
-  flex-direction: column;
-  border-style: solid;
-
-}    

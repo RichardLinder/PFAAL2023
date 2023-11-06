@@ -4,6 +4,10 @@
 
 {% block body %}
 
+<h1 class="accueil">Presentation de BmKeys</h1>
+
+<p>Bmkeys est une entreprise artisanal qui produit des clef personalisé de haut qualité.</p>
+
 
         {% if networks  is defined%}
             
@@ -21,6 +25,7 @@
         {% endif %}    
 
             <section id="shop">
+                <h2 class="accueil"> Presentation de différent clef déjas realisé</h2>
                     
                 <article class="carousellShop">
                     {% if photos is defined and photos is not empty %}
@@ -76,23 +81,27 @@
 
 
             </section>
-            <section id="actualite">
-                {% if articles is defined and articles is not empty %}
+            <section >
 
+                <h2class="accueil"> Les différente information lié a bmKeys</h2>
+                <div id="actualite">
+
+                    {% if articles is defined and articles is not empty %}
+                    
                     <div class="contenaire_articles">
                         <div class="articles">
                             
                             {% for article in articles  %}            
-                                <article>
-                                    <h4>
-                                        {{article.titleArticle}}
-                                    </h4>
-                                    <p>
-                                        {{article.textArticle}}
-                                    </p>
-                                </article>
+                            <article>
+                                <h4>
+                                    {{article.titleArticle}}
+                                </h4>
+                                <p>
+                                    {{article.textArticle}}
+                                </p>
+                            </article>
                             {% endfor %}
-                                
+                            
                         </div>
                         {% else %}
                         <figure class="articles">
@@ -104,55 +113,16 @@
                         <figure class="articles">
                             <img src="{{ asset('images/Placeholder-600x600.png') }}" alt="placeholder article">
                         </figure>
-                {% endif %}
-                    {% if article is defined %}
-                    <a class="liens" href=" {{ path('article')}} " >Voir plus d'article</a>
+                        {% endif %}
+                        {% if article is defined %}
+                        <a class="liens" href=" {{ path('article')}} " >Voir plus d'article</a>
                         
-                    {% endif %}
+                        {% endif %}
+                    </div>
                 </div>
-            </section>
+                </section>
             
 
-            {# <section id="actualite">
-
-                <h2>
-                    Actualité
-                </h2>
-                <p>
-                    Les actualite de bmKeys  vennez découvrire les principaux evenement autour de bmKeys
-                </p>
-                <div class="articles">
-                    <article>
-                        <h4>
-                            Actualité
-                        </h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        </p>
-                    </article>
-                    <article>
-                        <h4>
-                            Press
-                        </h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-
-                        </p>
-                    </article>
-                    <article>
-                        <h4>
-                            Project
-                        </h4>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                        </p>
-
-                    </article>
-                </div>
-                <a class="liens" href="">Voir plus d'article</a>
-
-
-            </section> #}
       
     </div>
 
