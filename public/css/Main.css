@@ -29,6 +29,16 @@ color: rgb(58, 34, 2);
 
 
 
+
+}
+.accueil{
+
+    height:50vh;
+    background-image: url("../images/cle.jpg");
+    background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 header{
     color: goldenrod;
@@ -39,11 +49,15 @@ background-color: rgb(58, 34, 2);
 #topNav{
     border: .5mm;
     padding: 2em;
+    width:50%;
+    display:flex;
+    justify-content: space-around;
 }
 section{
     display: flex;
     flex-direction: column;
     text-align: center;
+    padding: 2em;;
 }
 #leftNav {
     display: flex;
@@ -60,8 +74,8 @@ section{
         display: flex;
         flex-direction: row;
         justify-content: space-around;
-        color: white;
-        background-color: goldenrod;
+     
+        
 
 }
 figure{
@@ -71,15 +85,29 @@ img{
     max-width: 100%;
 }
 
-.liens{
-    color: white;
-    background-color: goldenrod;
+.devis{
+    
+    font-size: xx-large;
+    height: 10vh
 }
-.carouselApropos{
-    display: flex;
-    justify-content: space-evenly;
-}
+#apropos{
 
+  
+    background-color: goldenrod;
+    height: 70vh;
+   
+}
+.artisan{
+    display: flex;
+    width:60%;
+    margin:auto;
+}
+.artisan>figure{
+    width: 100%;
+}
+.artisan>article{
+    text-align: justify;
+}
 #actualite
 {
     display: flex;
@@ -114,7 +142,7 @@ footer{
 .formulaireDevis
 {
 
-    display: flex;
+  display: flex;
   flex-direction: column;
   border-style: solid;
 

@@ -4,59 +4,41 @@
 
 {% block body %}
 
-<h1 class="accueil">Presentation de BmKeys</h1>
+<section class="accueil">
 
-<p>Bmkeys est une entreprise artisanal qui produit des clef personalisé de haut qualité.</p>
+    <h1>QUI SOMMES NOUS?</h1>
+    
+    <p>Bmkeys est une entreprise artisanal qui produit des clef personalisé de haut qualité.</p>
 
-
-        {% if networks  is defined%}
-            
-
-            <nav id="leftNav">
-                {% for network in networks %}
-                {% if network.isActive%}    
-                <a id="{{network.title}}" href="{{network.link}}"><i class="{{network.awesome}}"></i></a> 
-                {% endif %}  
-                {% endfor %}
-            
-            </nav>
-
-        
-        {% endif %}    
-
-            <section id="shop">
-                <h2 class="accueil"> Presentation de différent clef déjas realisé</h2>
+                
+    
                     
-                <article class="carousellShop">
-                    {% if photos is defined and photos is not empty %}
+</section>
 
-                            {% for photo in photos %}
+
+<section id="shop">
+    <h2 class="title-shop"> NOS DERNIERES CREATIONS</h2>
+                    
+        <article class="carousellShop">
+            {% if photos is defined and photos is not empty %}
+
+                {% for photo in photos %}
                             
                             <figure>
                                 <img src="{{photo.liens}}" alt="{{photo.titre}} ">
                             </figure>
 
-                            {% endfor %}                        
+                {% endfor %}                        
                     
-                        {% else %}
-
-                        <figure>
-                            <img src="{{ asset('images/Pas-dimage-disponible.jpg') }}" alt="Pas de Photographie disponible">
-                        </figure>
-                        <figure>
-                            <img src="{{ asset('images/Pas-dimage-disponible.jpg') }}" alt="Pas de Photographie disponible">
-                        </figure>
-                        <figure>
-                            <img src="{{ asset('images/Pas-dimage-disponible.jpg') }}" alt="Pas de Photographie disponible">
-                        </figure>
+           
 
                     {% endif %}
                     
                 </article>
                 
                 {% if is_granted('ROLE_USER') %}
-                <div class="liens">
-                    <a class="brun" href="{{ path('devis')}}">choisir sa clef</a>
+                <div class="devis">
+                    <a class="brun" href="{{ path('devis')}}">Faire votre devis</a>
 
                 </div>
                     
@@ -67,16 +49,16 @@
 
 
             <section id="apropos">
-                <div class=" carouselApropos">
+                
+                <div class="artisan">
                     <figure>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhNBGUqA0aytXXTN9RUZMBqAJlS7f7ED5Qbawd_dNRa9H_sI3WADO9r7zl17m7rQYPK6o&usqp=CAU" alt="img1">
+                        <img src="{{ asset('images/artisan.jpg') }}" alt="brice durant artisan">
+                        <figcaption>test</figcaption>
                     </figure>
-                    <figure>
-                        <img src="https://cache.marieclaire.fr/data/photo/w1000_ci/1h4/portrait-artisan-metier-manuel.webp" alt="img2">
-                    </figure>
-                    <figure>
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJ9Ycl4TfulFokUe4AGNAWT4YVYihVKoc_-5wZQn6RZWGLFYB_EQbWHhlugIWVFxpv8CE&usqp=CAU" alt="img3">
-                    </figure>
+                    <article>
+                        <h2>test</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam fugiat animi soluta delectus possimus eligendi doloribus voluptatum unde sed minima culpa, non nobis incidunt, cupiditate sit sunt deserunt nulla dolorum, architecto optio explicabo enim maxime ipsa libero. Dicta, molestiae! Iste dolore distinctio porro, cumque suscipit adipisci enim cum saepe perferendis quis odit modi omnis optio natus iure deserunt, reiciendis sunt maxime quo. Nisi, maiores explicabo quae quaerat officia magni animi deleniti nesciunt ducimus pariatur et numquam dolore distinctio esse, consectetur necessitatibus quisquam molestiae voluptatibus modi vitae provident soluta dolor, illo sunt. Sit, temporibus? Rerum ex in pariatur minima labore eos!*</p>
+                    </article>
                 </div>
 
 
