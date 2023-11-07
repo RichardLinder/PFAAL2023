@@ -111,10 +111,22 @@ img{
 #actualite
 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+}
+
+
+#contenaireActualite{
+    display: flex;
     justify-content: center;
 
+
 }
+
+#contenaire_articles{
+    display: flex;
+    justify-content: center;
+  }
+
 
 .articles>article{
     background-color: black;
@@ -129,6 +141,36 @@ footer{
   justify-content: space-evenly;
 }
 
+
+
+/*  responsive accueil */
+@media screen and (max-width: 900px) {
+
+    .carousellShop{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .artisan{
+        flex-direction: column;
+        align-items: center;
+    }
+    #apropos{
+
+        height: 200vh;
+        
+
+    }
+    #contenaireActualite{
+
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+
+    }
+  
 
 
 /* /////////////////////////////////////////////////page special */
@@ -159,6 +201,12 @@ footer{
 
 
 /* page vos clef */
+
+
+.cols{
+    display: flex;
+    flex-direction: row;
+}
 .deviss
 {
         display: flex;

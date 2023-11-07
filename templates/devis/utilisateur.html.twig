@@ -1,80 +1,242 @@
-{% extends 'base.html.twig' %}
-
+{% extends 'baseBootstrap.html.twig' %}
 {% block title %}Vos Clef{% endblock %}
 
 {% block body %}
 
-<h1>Liste de vos clef</h1>
+<h2>Liste de vos clef</h2>
+<div class="container">
 
 
-<div class="devis">
+    {% for devis in deviss %}
+        {% if devis.statut.id > 0 and devis.statut.id < 2 %}
 
-    <div class="devisAValides flexUn" >
+            <div class="col">
 
-        <h2>devis a validé</h2>
-
-
-
-        {% for devis in devisAValides %}
-        <article>    
-            <h2>
-                Devis pour {{devis.nom}} {{devis.prenom}}
-            </h2>
-            <ul>
-                <li>
-                    {{devis.forme}}
-                </li>
-                <li>
-                    {{devis.bois}}
-                </li>
-                <li>
-                    {{devis.metal}}
-                </li>
-            </ul>
-
-            <p>L'artisant a pris en compte votre devis une proposition comercial vous sera donné au plus tôt</p>
-
+                <div class="card">
+                    <h3>Devis pour  {{devis.nom}}  {{devis.prenom}}</h3>
+                    <p>
+                        <h4>
+                            Numéros de serie de la serure
+                        </h4>
+                        <p>
+                            {{devis.NumerosDeSerieSerrure}}
+                        </p>
+                        <h4>
+                            Type de serrure 
+                        </h4>
+                        <p>
+                            {{devis.typeSerrure}}
+                        </p>
+                        <h4>
+                            Description de la serrure 
+                        </h4>
+                        <p>
+                            {{devis.descriptionSerrure}}
+                        </p>
+                    </p>
                 
-        </article>
+                    {{devis.statut.libelle}}
+                </div>
+                <h4>
+                    Action a Faire:
+                </h4>
+            </div>
+        
+        {% endif %}
+        
+        {% if devis.statut.id > 1 and devis.statut.id < 3 %}
+        <div class="col" >
 
-    </div>
-    
-    
-    <div class="devisValides flexUn" >
+            <div class="card">
+                <h3>Devis pour  {{devis.nom}}  {{devis.prenom}}</h3>
+                <p>
+                    <h4>
+                        Numéros de serie de la serure
+                    </h4>
+                    <p>
+                        {{devis.NumerosDeSerieSerrure}}
+                    </p>
+                    <h4>
+                        Type de serrure 
+                    </h4>
+                    <p>
+                        {{devis.typeSerrure}}
+                    </p>
+                    <h4>
+                        Description de la serrure 
+                    </h4>
+                    <p>
+                        {{devis.descriptionSerrure}}
+                    </p>
+                </p>
+            
+                {{devis.statut.libelle}}
+            </div>
+            <h4>
+                Action a Faire:
+            </h4>
+        </div>
+        {% endif %}
+        
+        {% if devis.statut.id > 2 and devis.statut.id < 4 %}
+        <div class="card">
+            <div class="col" >
 
-        <h2>devis à confirmé</h2>
+                <h3>Devis pour  {{devis.nom}}  {{devis.prenom}}</h3>
+                <p>
+                    <h4>
+                        Numéros de serie de la serure
+                    </h4>
+                    <p>
+                        {{devis.NumerosDeSerieSerrure}}
+                    </p>
+                    <h4>
+                        Type de serrure 
+                    </h4>
+                    <p>
+                        {{devis.typeSerrure}}
+                    </p>
+                    <h4>
+                        Description de la serrure 
+                    </h4>
+                    <p>
+                        {{devis.descriptionSerrure}}
+                    </p>
+                </p>
+            
+                {{devis.statut.libelle}}
+            </div>
+            <h4>
+                Action a Faire:
+            </h4>
+        </div>
+        {% endif %}
+        
+        {% if devis.statut.id > 3 and devis.statut.id < 4 %}
+        <div class="col" >
 
-        {% for devis in devisValides %}
-        <article>    
-            <h2>
-                Devis pour {{devis.nom}} {{devis.prenom}}
-            </h2>
-            <ul>
-                <li>
-                    {{devis.forme}}
-                </li>
-                <li>
-                    {{devis.bois}}
-                </li>
-                <li>
-                    {{devis.metal}}
-                </li>
-            </ul>
-            <p> accepter le devis ?</p>
-           
-    
-        <a href="{{ path('acepterDevis', {'id': devis.id }) }}">oui</a>
-        <br>
-        <a href="{{ path('refuserDevis', {'id': devis.id }) }}">non</a>
-                
-        </article>
+            <div class="card">
+                <h3>Devis pour  {{devis.nom}}  {{devis.prenom}}</h3>
+                <p>
+                    <h4>
+                        Numéros de serie de la serure
+                    </h4>
+                    <p>
+                        {{devis.NumerosDeSerieSerrure}}
+                    </p>
+                    <h4>
+                        Type de serrure 
+                    </h4>
+                    <p>
+                        {{devis.typeSerrure}}
+                    </p>
+                    <h4>
+                        Description de la serrure 
+                    </h4>
+                    <p>
+                        {{devis.descriptionSerrure}}
+                    </p>
+                </p>
+            
+                {{devis.statut.libelle}}
+            </div>
+            <h4>
+                Action a Faire:
+            </h4>
+        </div>
+        {% endif %}
+        
+        
+        {% if devis.statut.id > 4 and devis.statut.id < 6 %}
+        <div class="col">
 
-    </div>
+            <div class="card">
+                <h3>Devis pour  {{devis.nom}}  {{devis.prenom}}</h3>
+                <p>
+                    <h4>
+                        Numéros de serie de la serure
+                    </h4>
+                    <p>
+                        {{devis.NumerosDeSerieSerrure}}
+                    </p>
+                    <h4>
+                        Type de serrure 
+                    </h4>
+                    <p>
+                        {{devis.typeSerrure}}
+                    </p>
+                    <h4>
+                        Description de la serrure 
+                    </h4>
+                    <p>
+                        {{devis.descriptionSerrure}}
+                    </p>
+                </p>
+            
+                {{devis.statut.libelle}}
+            </div>
+            <h4>
+                Action a Faire:
+            </h4>
+        </div>
+        {% endif %}
+        
+        
+        {% if devis.statut.id > 5 and devis.statut.id < 7 %}
+        <div class="col" >
 
-
-
-
-
+            <div class="card">
+                <h3>Devis pour  {{devis.nom}}  {{devis.prenom}}</h3>
+                <p>
+                    <h4>
+                        Numéros de serie de la serure
+                    </h4>
+                    <p>
+                        {{devis.NumerosDeSerieSerrure}}
+                    </p>
+                    <h4>
+                        Type de serrure 
+                    </h4>
+                    <p>
+                        {{devis.typeSerrure}}
+                    </p>
+                    <h4>
+                        Description de la serrure 
+                    </h4>
+                    <p>
+                        {{devis.descriptionSerrure}}
+                    </p>
+                </p>
+            
+                {{devis.statut.libelle}}
+            </div>
+            <h4>
+                Action a Faire:
+            </h4>
+        </div>
+        {% endif %}
+        
+        
+        
+        
+        
+        
+        {% if devis.statut.id > 1 and devis.statut.id < 3 %}
+            <p>
+                validé le devis ?         
+            </p>
+            <a href="{{ path('acepterDevis', {'id': devis.id }) }}">oui</a>
+            <br>
+            <a href="{{ path('refuserDevis', {'id': devis.id }) }}">non</a>
+            {% else %}
+            <p>
+                Pas d'action a faire pour le moment
+            </p>
+        {% endif %}
+        
+        
+    {% endfor %}
+</div>
 
 
 {% endblock %}
