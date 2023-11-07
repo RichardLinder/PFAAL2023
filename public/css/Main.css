@@ -1,8 +1,17 @@
 a:link
 {
-color: goldenrod;
+color: black;
 }
 a:visited
+{
+    color: black;
+}
+
+#topNav>a:link
+{
+color: goldenrod;
+}
+#topNav>a:visited
 {
     color: goldenrod;
 }
@@ -157,7 +166,7 @@ footer{
     }
     #apropos{
 
-        height: 200vh;
+        height: 150vh;
         
 
     }
@@ -202,10 +211,19 @@ footer{
 
 /* page vos clef */
 
-
-.cols{
-    display: flex;
-    flex-direction: row;
+.devis-li{
+    border: 1px solid black;
+    background-color: goldenrod;
+    margin-bottom: 1em;
+}
+.devis-all{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.col{
+   width: 33% !important
+    
 }
 .deviss
 {

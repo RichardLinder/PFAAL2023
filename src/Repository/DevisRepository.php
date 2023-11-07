@@ -3,8 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Devis;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Parameter;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @extends ServiceEntityRepository<Devis>
@@ -21,6 +23,24 @@ class DevisRepository extends ServiceEntityRepository
         parent::__construct($registry, Devis::class);
     }
 
+
+
+
+
+
+
+    public function FindDevisByIdPourAvalide(int $userId ,int $statut) : array
+    {
+        return $this->createQueryBuilder("d")           
+        ->andwhere('d.Utilisateur = :utilisateur')
+        ->andWhere('d.Statut = :statut')
+        ->setParameters(new ArrayCollection([
+            new Parameter('utilisateur', $userId),
+            new Parameter('statut', $statut)]))
+        ->orderBy('d.id', 'ASC')
+        ->getQuery()
+        ->getResult();
+    }
 //    /**
 //     * @return Devis[] Returns an array of Devis objects
 //     */

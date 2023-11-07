@@ -137,11 +137,22 @@ class DevisController extends AbstractController
             $user = $this->getUser();
     // test if pour verifié que l'utilisateur es bien instancié
             if(!empty($user)){
-                $devis =  $devisRepository->findBy(['Utilisateur' => $user->getId()]);
+     
+                $devisAValide= $devisRepository->FindDevisByIdPourAvalide($user->getId(),1);
+                $devisValide= $devisRepository->FindDevisByIdPourAvalide($user->getId(),2);
+                $devisAccepter= $devisRepository->FindDevisByIdPourAvalide($user->getId(),3);
+                $devisRefuse= $devisRepository->FindDevisByIdPourAvalide($user->getId(),4);
+                $clefFinis= $devisRepository->FindDevisByIdPourAvalide($user->getId(),5);
+
                 
                 return $this->render('/devis/utilisateur.html.twig',
                 [
-                    'deviss' => $devis
+
+                    'devisAValides' => $devisAValide,
+                    'devisValides' => $devisValide,
+                    'devisAccepters' => $devisAccepter,
+                    'devisRefuses' => $devisRefuse,
+                    'clefFinis' => $clefFinis
                 ]); 
             }else
             return $this->render('/404.html.twig');
