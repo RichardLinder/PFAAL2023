@@ -27,10 +27,12 @@ class DevisRepository extends ServiceEntityRepository
 
 
 
-
+// fonction  du DevisRepository 
+// 2 argument en int l'id de user et id du statut 
 
     public function FindDevisByIdPourAvalide(int $userId ,int $statut) : array
     {
+        // directememnt un return
         return $this->createQueryBuilder("d")           
         ->andwhere('d.Utilisateur = :utilisateur')
         ->andWhere('d.Statut = :statut')
@@ -41,6 +43,22 @@ class DevisRepository extends ServiceEntityRepository
         ->getQuery()
         ->getResult();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //    /**
 //     * @return Devis[] Returns an array of Devis objects
 //     */

@@ -22,6 +22,8 @@ class DevisController extends AbstractController
     #[Route('/devis', name: 'devis')]
     public function index(ManagerRegistry $doctrine,Request $request, EntityManagerInterface $entityManager): Response
     {
+        // block l'acces si n'est pas un utilisisateur 
+        $this->denyAccessUnlessGranted('ROLE_USER');
                     // crée le statut du contrat avec l'id 1 donc devis a validé
 
         $statut = $entityManager->getRepository(Statut::class)->find(1);
@@ -71,6 +73,10 @@ class DevisController extends AbstractController
     #[Route('/devis/admin', name: 'devisAdmin')]
     public function devisAdmin(DevisRepository $devisRepository): Response
     {
+        //  restraint l'accès au admin
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
+
 
         $devisAValide = $devisRepository->findBy(
             ['Statut' => '1'],
@@ -108,6 +114,9 @@ class DevisController extends AbstractController
     public function validationDevis(EntityManagerInterface $entityManager ,int $id) : Response
     {
 
+        // ne permet l'accès que au admin
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $devis = $entityManager->getRepository(Devis::class)->find($id);
 
         if (!$devis) {
@@ -133,11 +142,14 @@ class DevisController extends AbstractController
         public function vosClef(DevisRepository $devisRepository): Response
     
         {
+            // seul les utilisateur y on accès
+            $this->denyAccessUnlessGranted('ROLE_USER');
             // recuperation de l'id de l'utilisateur en cour en 1er en recupérant l'utilisateur en cour
             $user = $this->getUser();
     // test if pour verifié que l'utilisateur es bien instancié
             if(!empty($user)){
      
+                // apel a la fucntion du repository
                 $devisAValide= $devisRepository->FindDevisByIdPourAvalide($user->getId(),1);
                 $devisValide= $devisRepository->FindDevisByIdPourAvalide($user->getId(),2);
                 $devisAccepter= $devisRepository->FindDevisByIdPourAvalide($user->getId(),3);
@@ -156,18 +168,16 @@ class DevisController extends AbstractController
                 ]); 
             }else
             return $this->render('/404.html.twig');
-            return $this->render('/accueil/404.html.twig');
-    
-    
-
-
-   
+      
     }
 
     #[Route('/devis/utilisateur/accepterDevis{id}', name: 'acepterDevis')]
 
     public function acepterDevis(ManagerRegistry $doctrine ,EntityManagerInterface $entityManager ,int $id) : Response
     {
+        // seul les utilisateur peuvent faire cette action
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         // recupération du statut 3
         $statut = $entityManager->getRepository(Statut::class)->find(3);
         //recupération de l'user
@@ -216,7 +226,6 @@ class DevisController extends AbstractController
             
         }
       
-
     }
     
 
@@ -226,6 +235,7 @@ class DevisController extends AbstractController
     
     
     {
+        // seul les utilisateur peuvent faire cette action 
                // recupération du statut 4
                $statut = $entityManager->getRepository(Statut::class)->find(4);
         
@@ -268,6 +278,9 @@ class DevisController extends AbstractController
     #[Route('/devis/admin/clefFinis{id}', name: 'clefFinis')]
     public function clefFinis(EntityManagerInterface $entityManager ,int $id) : Response
     {
+        // seul les admin peuvent faire cette action
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 
         $devis = $entityManager->getRepository(Devis::class)->find($id);
 
