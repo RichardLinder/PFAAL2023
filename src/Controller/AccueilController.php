@@ -12,7 +12,7 @@ class AccueilController extends AbstractController
 {
     //page principal du site
 // route de la page ;: comment accèdé a la page depuis l'url 
-    #[Route('/accueil', name: 'app_accueil')]
+    #[Route('/', name: 'app_accueil')]
     public function index( ArticleRepository $articleRepository,ImageClefRepository $imageClefRepository): Response
 
     {
