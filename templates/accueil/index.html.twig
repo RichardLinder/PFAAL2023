@@ -6,9 +6,10 @@
 
 <section class="accueil">
 
-    <h1>QUI SOMMES NOUS?</h1>
+    <h1>BMKeys, qui sommes nous?</h1>
     
     <p>Bmkeys est une entreprise artisanal qui produit des clef personalisé de haut qualité.</p>
+    <p>personnalisez vos clés selon vos envies</p>
 
                 
     
@@ -50,13 +51,13 @@
 
             <section id="apropos">
                 
+                <h2>A propos de l'artisan</h2>
                 <div class="artisan">
                     <figure>
-                        <img src="{{ asset('images/artisan.jpg') }}" alt="brice durant artisan">
-                        <figcaption>test</figcaption>
+                        <img src="{{ asset('images/artisan.jpg') }}" alt="brice Mueller artisan" class="img-artisan">
+                        <figcaption>Brice Mueller</figcaption>
                     </figure>
                     <article>
-                        <h2>test</h2>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam fugiat animi soluta delectus possimus eligendi doloribus voluptatum unde sed minima culpa, non nobis incidunt, cupiditate sit sunt deserunt nulla dolorum, architecto optio explicabo enim maxime ipsa libero. Dicta, molestiae! Iste dolore distinctio porro, cumque suscipit adipisci enim cum saepe perferendis quis odit modi omnis optio natus iure deserunt, reiciendis sunt maxime quo. Nisi, maiores explicabo quae quaerat officia magni animi deleniti nesciunt ducimus pariatur et numquam dolore distinctio esse, consectetur necessitatibus quisquam molestiae voluptatibus modi vitae provident soluta dolor, illo sunt. Sit, temporibus? Rerum ex in pariatur minima labore eos!*</p>
                     </article>
                 </div>
@@ -65,7 +66,7 @@
             </section>
             <section id="actualite" >
 
-                <h2 id="titre-actualite"> Les différente information lié a bmKeys</h2>
+                <h2 id="titre-actualite"> Les derniers articles de BMKeys</h2>
                 <div id="contenaireActualite">
 
                     {% if articles is defined and articles is not empty %}
@@ -74,7 +75,7 @@
                         <div class="articles">
                             
                             {% for article in articles  %}            
-                            <article>
+                            <article class="articles-news">
                                 <h4>
                                     {{article.titleArticle}}
                                 </h4>

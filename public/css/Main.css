@@ -1,3 +1,17 @@
+/* *********************************************GENERAL********************************************************************** */
+
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+    font-family: 'Poppins',sans-serif;
+}
+#contenaire{
+    padding: 5em;
+    background-color: antiquewhite;
+    min-height:80vh;
+}
+
 a:link
 {
 color: black;
@@ -31,7 +45,7 @@ color: rgb(58, 34, 2);
 
 
 
-#contenaire{
+/* #contenaire{
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -39,34 +53,50 @@ color: rgb(58, 34, 2);
 
 
 
-}
+} */
 .accueil{
 
     height:50vh;
     background-image: url("../images/cle.jpg");
     background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    
+}
+.accueil h1, .accueil p{
+
+    color: white;
+    text-shadow: 1px 1px 2px pink;
+    font-size: xx-large;
+    padding-bottom: 1em;
 }
 header{
     color: goldenrod;
-display: flex;
-justify-content: space-evenly;
-background-color: rgb(58, 34, 2);
+    display: flex;
+    padding:2em;
+    justify-content: space-evenly;
+    background-color: rgb(58, 34, 2);
 }
 #topNav{
-    border: .5mm;
-    padding: 2em;
-    width:50%;
     display:flex;
     justify-content: space-around;
+    width:50%;
+}
+#topNav a {
+    font-size: xx-large;
 }
 section{
     display: flex;
     flex-direction: column;
     text-align: center;
     padding: 2em;;
+}
+h2{
+    padding-bottom:2em;
+    font-weight: bold;
+    font-size: xx-large;
 }
 #leftNav {
     display: flex;
@@ -103,7 +133,7 @@ img{
 
   
     background-color: goldenrod;
-    height: 70vh;
+    height: 80vh;
    
 }
 .artisan{
@@ -116,6 +146,11 @@ img{
 }
 .artisan>article{
     text-align: justify;
+    font-size: large;
+    padding: 1em;
+}
+.artisan>figure>.img-artisan{
+    width: 300px;
 }
 #actualite
 {
@@ -130,7 +165,9 @@ img{
 
 
 }
-
+.articles{
+    padding: 1em;
+}
 #contenaire_articles{
     display: flex;
     justify-content: center;
@@ -147,53 +184,28 @@ footer{
     background-color: black;
     color: white;
     display: flex;
-  justify-content: space-evenly;
+    padding:2em;
+    justify-content: space-evenly;
+   
+   
 }
 
 
 
-/*  responsive accueil */
-@media screen and (max-width: 900px) {
-
-    .carousellShop{
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .artisan{
-        flex-direction: column;
-        align-items: center;
-    }
-    #apropos{
-
-        height: 150vh;
-        
-
-    }
-    #contenaireActualite{
-
-        flex-direction: column;
-        align-items: center;
-    }
 
 
-
-    }
-  
-
-
-/* /////////////////////////////////////////////////page special */
+/* //////////////////////////////////////////////////page special */
 
 /* devis client */
 .devis
 {
-    /* display: flex; */
+    
     
 }
 .formulaireDevis
 {
 
-  display: flex;
+    display: flex;
   flex-direction: column;
   border-style: solid;
 
@@ -215,6 +227,7 @@ footer{
     border: 1px solid black;
     background-color: goldenrod;
     margin-bottom: 1em;
+    padding : 1em;
 }
 .devis-all{
     display:flex;
@@ -241,3 +254,32 @@ footer{
     border-style: solid;
 }
 
+
+    /*  responsive accueil */
+    @media screen and (max-width: 900px) {
+    
+        .carousellShop{
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .artisan{
+            flex-direction: column;
+            align-items: center;
+        }
+        #apropos{
+    
+            height: 150vh;
+            
+    
+        }
+        #contenaireActualite{
+    
+            flex-direction: column;
+            align-items: center;
+        }
+    
+    
+    
+        }
+      
