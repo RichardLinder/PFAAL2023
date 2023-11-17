@@ -39,7 +39,8 @@
              
                     {% if is_granted('ROLE_USER') %}
                     <a href="{{path('vosClef')}}">Vos Clés</a>
-                    <a href="">Profil</a>
+
+                    <a href="{{path('profil')}}">Profil</a>
                     {% endif %}
                 </nav>
             </header> 

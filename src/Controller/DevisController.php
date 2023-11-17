@@ -297,4 +297,28 @@ class DevisController extends AbstractController
         return $this->redirectToRoute("app_accueil");
     }
 
+    
+       // function qui permet a l'admin indiqué la la clef es récupéré 
+       #[Route('/devis/admin/clefFinis{id}', name: 'clefRecuperer')]
+       public function clefRecuperer(EntityManagerInterface $entityManager ,int $id) : Response
+       {
+           // seul les admin peuvent faire cette action
+           $this->denyAccessUnlessGranted('ROLE_ADMIN');
+   
+   // recupére le devis avec l'id devis 
+           $devis = $entityManager->getRepository(Devis::class)->find($id);
+   // test logique if verification du bon devis 
+           if (!$devis) {
+               throw $this->createNotFoundException(
+                   'Devis non trouvé '.$id
+               );
+           }      
+   
+           $statut = $entityManager->getRepository(Statut::class)->find(6);
+           // changer le statut a clef recupéré
+           $devis->setStatut($statut);
+           $entityManager->flush();        
+           return $this->redirectToRoute("app_accueil");
+       }
+
 }
