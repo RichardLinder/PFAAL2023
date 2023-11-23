@@ -17,13 +17,13 @@
 <p>
     Entré vos information personelle pour pouvoir faire votre devis en ligne 
 </p>
-    <section class="formulaireDevis " id="devisUn">
+{{ form_start(formDevis) }}
+<section class="formulaireDevis " id="devisUn">
         <h3>info personelle</h3>
-        {{ form_start(formDevis) }}
             {{ form_row(formDevis.nom) }}
             {{ form_row(formDevis.prenom ) }}
 
-            <button id="suivantZero">Suivant </button>
+            <input type="button" id="suivantZero" value="Suivant"> </input>
     </section>
     <section class="formulaireDevis cacheDevis" id="devisDeux">
         <h3> info sur la serrure</h3>
@@ -31,8 +31,8 @@
             {{ form_row(formDevis.descriptionSerrure) }}
             {{ form_row(formDevis.NumerosDeSerieSerrure ) }}
             {{ form_row(formDevis.detaillSuplementaire) }}    
-            <button id="suivantUn" >Suivant </button>
-            <button id="PrecedentUn" >Précédent </button>  
+            <input type="button" id="suivantUn" value="Suivant"> </input>
+            <input type="button" id="PrecedentUn" value="Précédent" > </input>  
     </section>
     <section class="formulaireDevis cacheDevis" id="devisTrois">
         <h3>choix des option</h3>
@@ -40,9 +40,9 @@
             {{ form_row(formDevis.metal ) }}
             {{ form_row(formDevis.forme) }} 
         <button type="submit" class="btn">Créez votre clef</button>
-        {{ form_end(formDevis) }}
-        <button id="PrecedentDeux" >Précédent </button>
+        <input type="button" id="PrecedentDeux" value="Précédent" > </input>
     </section>
+    {{ form_end(formDevis) }}
 </div>
 
 <script src="{{asset('JS/formulaireDevis.js')}}"></script>

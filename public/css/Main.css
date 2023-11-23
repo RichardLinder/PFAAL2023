@@ -56,13 +56,14 @@ color: rgb(58, 34, 2);
 } */
 .accueil{
 
-    height:50vh;
+
     background-image: url("../images/cle.jpg");
     background-attachment: fixed;
-    background-position: center;
+    background-position: right;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
+    padding: 50px;
     
 }
 .accueil h1, .accueil p{
@@ -87,6 +88,70 @@ header{
 #topNav a {
     font-size: xx-large;
 }
+
+/* Menu Burger */
+
+.burgerMenu {
+    height: 83px;
+    width: 391px;
+    position: fixed;
+    z-index: 3;
+    top: -140px;
+    background: radial-gradient(rgb(139, 195, 245), #1294b8);
+    padding-top: 15px;
+    transition: top 0.5s ease;
+    display: flex;
+  }
+  
+
+.burgerMenu a {
+    text-decoration: none;
+    font-size: 15px;
+    color: goldenrod;
+    display: block;
+    transition: 0.1s;
+}
+  
+.burgerMenu a:hover {
+    color: #111;
+}
+  
+.burgerMenu ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+  
+
+.burgerMenu.active {
+    top: 0px;
+}
+  
+
+.burgerMenu .close {
+    position: absolute;
+    top: 55px;
+    right: 182px;
+    font-size: 36px;
+}
+  
+#openBtn {
+    display: none;
+}
+
+.burger-icon span {
+    display: block;
+    width: 35px;
+    height: 5px;
+    background-color: goldenrod;
+    margin: 6px 0;
+}
+
+
 section{
     display: flex;
     flex-direction: column;
@@ -127,13 +192,13 @@ img{
 .devis{
     
     font-size: xx-large;
-    height: 10vh
+
 }
 #apropos{
 
   
     background-color: goldenrod;
-    height: 80vh;
+
    
 }
 .artisan{
@@ -197,11 +262,13 @@ footer{
 /* //////////////////////////////////////////////////page special */
 
 /* devis client */
-.devis
-{
-    
-    
+button{
+    background-color: antiquewhite;
+    padding: 5px;
+    border-radius: 5px !important;
+    border-width: 1px;
 }
+
 .formulaireDevis
 {
 
@@ -220,7 +287,6 @@ footer{
     flex: 1;
 }
 
-
 /* page vos clef */
 
 .devis-li{
@@ -229,22 +295,18 @@ footer{
     margin-bottom: 1em;
     padding : 1em;
 }
-.devis-all{
+/* .devis-all{
     display:flex;
     flex-wrap: wrap;
     justify-content: space-around;
-}
+} */
 .col{
    width: 33% !important
     
 }
-.deviss
-{
-        display: flex;
-        flex-direction: column;    
-}
 
-.deviss->article
+
+.deviss>article
 {
     display: flex;
     justify-content: center;
@@ -256,7 +318,16 @@ footer{
 
 
     /*  responsive accueil */
-    @media screen and (max-width: 900px) {
+
+    @media screen and (max-width: 1648px) {
+        #topNav{
+            width: 100%;
+        }
+
+    }
+
+ 
+    @media screen and (max-width: 991px) {
     
         .carousellShop{
             flex-direction: column;
@@ -267,19 +338,51 @@ footer{
             flex-direction: column;
             align-items: center;
         }
-        #apropos{
-    
-            height: 150vh;
-            
-    
-        }
+       
         #contenaireActualite{
     
             flex-direction: column;
             align-items: center;
         }
-    
-    
-    
+           
+            #openBtn {
+                display: block;
+                order: 4;
+            }
+
+            #topNav {
+                display: none;
+            }
+        
+            .burgerMenu {
+                height: 287px;
+                width: 240px;
+                top: 0px;
+                right: -240px;
+                transition: right 0.5s ease;
+                background:  rgb(58, 34, 2);
+                border-bottom-left-radius: 15px;
+            }
+        
+            .burgerMenu.active {
+                right: 0px;
+                padding: 45px 25px 14px 45px;
+                border: 2px solid goldenrod;
+                height: auto;
+            }
+        
+            .burgerMenu .close {
+                top: 0px;
+                left: 24px;
+                font-size: 45px;
+            }
+        
+            .burgerMenu a {
+                font-size: 21px;
+            }
+        
+            .burgerMenu ul {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
-      

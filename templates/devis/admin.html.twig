@@ -140,11 +140,34 @@
                         {{devis.metal}}
                     </li>
                 </ul>
-                <p>devis refusé par le client</p>
-                
+                <button type="submit" value="{{devis.id}}"  method="post" > <a href="{{ path('clefRecuperer', {'id': devis.id }) }}">La clef a Recuperers</a></button>  
                 
             </div>
             {% endfor %}
+            <div class="col-3 " >
+                <h2>clef Récuperer </h2>
+                
+                {% for devis in clefRecuperers %}
+                <div class="devis-li">    
+                    <h2>
+                        Devis pour {{devis.nom}} {{devis.prenom}}
+                    </h2>
+                    <ul>
+                        <li>
+                            {{devis.forme}}
+                        </li>
+                        <li>
+                            {{devis.bois}}
+                        </li>
+                        <li>
+                            {{devis.metal}}
+                        </li>
+                    </ul>
+                    <p>devis refusé par le client</p>
+                    
+                    
+                </div>
+                {% endfor %}
         </div>
     </div>
 </div>

@@ -99,13 +99,18 @@ class DevisController extends AbstractController
             ['Statut' => '5'],
             ['id' => 'ASC']
         );
+        $clefRecuperers = $devisRepository->findBy(
+            ['Statut' => '6'],
+            ['id' => 'ASC']
+        );
         return $this->render('devis/admin.html.twig',
         [
             'devisAValides' => $devisAValide,
             'devisValides' => $devisValide,
             'devisAccepters' => $devisAccepter,
             'devisRefuses' => $devisRefuse,
-            'clefFinis' => $clefFinis
+            'clefFinis' => $clefFinis,
+            'clefRecuperers'=> $clefRecuperers
         ]);
     }
 
@@ -155,6 +160,7 @@ class DevisController extends AbstractController
                 $devisAccepter= $devisRepository->FindDevisByIdPourAvalide($user->getId(),3);
                 $devisRefuse= $devisRepository->FindDevisByIdPourAvalide($user->getId(),4);
                 $clefFinis= $devisRepository->FindDevisByIdPourAvalide($user->getId(),5);
+                $clefRecuperers =$devisRepository->FindDevisByIdPourAvalide($user->getId(),6);
 
                 
                 return $this->render('/devis/utilisateur.html.twig',
@@ -164,7 +170,9 @@ class DevisController extends AbstractController
                     'devisValides' => $devisValide,
                     'devisAccepters' => $devisAccepter,
                     'devisRefuses' => $devisRefuse,
-                    'clefFinis' => $clefFinis
+                    'clefFinis' => $clefFinis,
+                    'clefRecuperers' => $clefRecuperers
+                    
                 ]); 
             }else
             return $this->render('/404.html.twig');
@@ -299,7 +307,7 @@ class DevisController extends AbstractController
 
     
        // function qui permet a l'admin indiqué la la clef es récupéré 
-       #[Route('/devis/admin/clefFinis{id}', name: 'clefRecuperer')]
+       #[Route('/devis/admin/clefRecuperer{id}', name: 'clefRecuperer')]
        public function clefRecuperer(EntityManagerInterface $entityManager ,int $id) : Response
        {
            // seul les admin peuvent faire cette action

@@ -39,7 +39,7 @@ class Devis
     private ?string $detaillSuplementaire = null;
 
     #[ORM\ManyToOne(inversedBy: 'deviss')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Utilisateur $Utilisateur = null;
 
     #[ORM\ManyToOne(inversedBy: 'deviss')]

@@ -43,16 +43,53 @@
                     <a href="{{path('profil')}}">Profil</a>
                     {% endif %}
                 </nav>
+
+                <div id="myBurgerMenu" class="burgerMenu">
+                    <a id="closeBtn" href="#" class="close">×</a>
+                    <ul>
+                        {% if not is_granted('ROLE_USER') %}
+                        <li><a class="link_menu" href="{{path('app_inscription')}}">Inscription</a>{% endif %}</li>
+                        {% if not is_granted('ROLE_USER') %}
+                        <li><a class="link_menu" href="{{path('connexion')}}">Connexion</a>{% endif %}</li>
+                        {% if  is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                        <li><a class="link_menu" href="{{path('app_logout')}}">Deconnection</a>{% endif %}</li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li>
+                            <a class="link_menu" class="link_menu" href="{{path('admin')}}">Admin</a>
+                            <a href="{{path('devisAdmin')}}">Devis Admin</a>
+                            {% endif %}</li>
+                            {% if is_granted('ROLE_USER') %}
+                        <li><a class="link_menu" href="{{path('vosClef')}}">Vos Clés</a></li>
+                        <li><a class="link_menu" href="{{path('profil')}}">Profil</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+        
+                <a href="#" id="openBtn">
+                    <span class="burger-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </a>
+
+
+
+
+
             </header> 
             
+            <main>
+
+                {% block body %}{% endblock %}
+            </main>
             
-            {% block body %}{% endblock %}
-            
+            <footer>
+            <span>contact</span>
+            <span>mentions légales</span>
+            <span>CGV</span>
+        </footer>
         </div>
-        <footer>
-        <span>contact</span>
-        <span>mentions légales</span>
-        <span>CGV</span>
-    </footer>
+    <script src="{{asset('JS/menus.js')}}"></script>
     </body>
 </html>

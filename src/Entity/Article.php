@@ -27,7 +27,7 @@ class Article
     private ?string $lienImageArticle = null;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Utilisateur $Utilisateur = null;
 
     public function getId(): ?int

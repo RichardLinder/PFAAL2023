@@ -5,7 +5,7 @@
     const buttonPDeux = document.getElementById("PrecedentDeux");
 
 
-    // creation des 
+    // creation des nom des section
     const devisUn = document.getElementById("devisUn");
     const devisDeux = document.getElementById("devisDeux");
     const devisTrois = document.getElementById("devisTrois");
