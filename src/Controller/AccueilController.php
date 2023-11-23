@@ -16,9 +16,11 @@ class AccueilController extends AbstractController
     public function index( ArticleRepository $articleRepository,ImageClefRepository $imageClefRepository): Response
 
     {
-
+        // invocation d'un modèle
         $photos = $imageClefRepository->findBy([], ["id" => "ASC"]);
         $articles = $articleRepository->findBy([], ["id" => "ASC"]);
+
+        // renvoie une vue 
         return $this->render('accueil/index.html.twig', [
             'articles' => $articles,
             'photos' => $photos
