@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profile de {{ profil}} {% endblock %}
+{% block title %}Profile de {{ profil.pseudo}} {% endblock %}
 
 {% block body %}
+<h1>
+    profil {{ profil.pseudo}} 
+</h1>
+
+<p>Vous pouvez ici voir les information qui vous concerne</p>
+
+
 
 {% endblock %}
