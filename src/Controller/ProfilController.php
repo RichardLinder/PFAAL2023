@@ -12,9 +12,15 @@ class ProfilController extends AbstractController
     public function index(): Response
     {
 
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+
+
+        $profil = "jean";
+
         // a faire : afficher les info utilisateur 
         return $this->render('profil/index.html.twig', [
-            'controller_name' => 'ProfilController',
+            'profil' => $profil,
         ]);
     }
 
